@@ -1,7 +1,7 @@
 val scala3Version = "3.3.1"
 
-val MonocleVersion    = "3.2.0"
-val MunitVersion           = "0.7.29"
+val MonocleVersion = "3.2.0"
+val MunitVersion   = "0.7.29"
 
 lazy val root = project
   .in(file("."))
@@ -10,12 +10,14 @@ lazy val root = project
     version := "0.1.0-SNAPSHOT",
     scalaVersion := scala3Version,
     libraryDependencies ++= Seq(
-      // Monocle lenses
+      "org.typelevel" %% "cats-core" % "2.10.0",
+
+      // Monocle lenses, not sure why
       "dev.optics" %% "monocle-core"  % MonocleVersion,
       "dev.optics" %% "monocle-macro" % MonocleVersion,
 
       // Test
-      "org.scalameta" %% "munit"               % MunitVersion           % Test,
+      "org.scalameta" %% "munit" % MunitVersion % Test
     ),
     testFrameworks += new TestFramework("munit.Framework"),
     run / fork := true,
